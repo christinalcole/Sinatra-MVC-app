@@ -17,7 +17,7 @@ class Person < ActiveRecord::Base
   end
 
 # Returns message based on birth path number
-  def birth_path_msg(number)
+  def self.birth_path_msg(number)
     case number
      when number = 1 then message = "One is the leader. The number one indicates the ability to stand alone, and is a strong vibration. Ruled by the Sun."
      when number = 2 then message = "This is the mediator and peace-lover. The number two indicates the desire for harmony. It is a gentle, considerate, and sensitive vibration. Ruled by the Moon."
@@ -31,6 +31,5 @@ class Person < ActiveRecord::Base
      else message = "Your numerology number is #{number}.  Wait!  Your birth path number isn't 1-9!!"
     end
   end
-
 
 end
