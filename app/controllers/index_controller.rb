@@ -2,9 +2,9 @@ require 'sinatra'
 
 def setup_index_view
   birthdate = params[:birthdate]
-  number = first_num(birthdate) 
-  path_number = nn(number)
-  @message = birth_path_msg(path_number)
+  number = Person.first_num(birthdate) 
+  path_number = Person.nn(number)
+  @message = Person.birth_path_msg(path_number)
 end
 
 def valid_birthdate(input)
@@ -23,8 +23,8 @@ end
 post '/' do
   birthdate = params[:birthdate]
   if valid_birthdate(birthdate)
-   number = first_num(params[:birthdate].gsub("-",""))
-   path_number = nn(number)
+   number = Person.first_num(params[:birthdate].gsub("-",""))
+   path_number = Person.nn(number)
    redirect "/message/#{path_number}"
   else 
    @error = "You should enter a valid birthdate in the form of mmddyyyy."
@@ -35,7 +35,7 @@ end
 
 get '/message/:path_number' do
   path_number = params[:path_number].to_i
-  @message = birth_path_msg(path_number)
+  @message = Person.birth_path_msg(path_number)
   erb :index
 end
 
